@@ -1,0 +1,19 @@
+# Dockerfile from https://github.com/mostafamohajeri/eflint-server, 
+# adjusted with latest version of eflint haskell implementation
+
+FROM onejonathan/eflint-main-05062023:latest AS executable
+
+FROM maven:3.6.3-openjdk-11
+
+COPY --from=executable /root/.cabal/bin/eflint-server /usr/bin/
+
+# For file uploads
+RUN apt-get update && apt-get install libnuma-dev -y 
+
+RUN git clone https://github.com/mostafamohajeri/eflint-server.git
+
+WORKDIR /eflint-server/web-server
+
+RUN mvn compile
+
+CMD mvn exec:java -Dexec.mainClass="eflint.Main"

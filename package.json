@@ -1,0 +1,33 @@
+{
+  "name": "jonathans_eflint_gui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"node proxy.js 5173 8080 8000\"",
+    "build": "vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "serve": "concurrently \"vite preview --port 3000 --host\" \"node proxy.js 3000 8080 8000\"",
+    "serve_docker": "concurrently \"vite preview --port 3000 --host\" \"node proxy.js 3000 http://web-server:8080 8000\""
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "react": "^18.2.0",
+    "react-d3-tree": "^3.6.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.1.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "request": "^2.88.2",
+    "vite": "^4.3.9"
+  }
+}

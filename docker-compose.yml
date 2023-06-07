@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  static-gui-host:
+    build:
+      context: .
+      dockerfile: Dockerfile.staticgui
+    ports:
+      - "8000:8000"
+      - "3000:3000"
+
+  web-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.webserver
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./eflint_files:/eflint_files
